@@ -20,9 +20,9 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) {
         if (userRepository.count() == 0) {
             addUser("Admin", "admin@gmail.com", "admin123", "ADMIN");
-            addUser("Ravi", "ravi@gmail.com", "mech123", "MECHANIC");
+            addUser("Ravi", "mech@gmail.com", "mech123", "MECHANIC");
             addUser("Anil", "anil@gmail.com", "mech123", "MECHANIC");
-            addUser("Sita", "sita@gmail.com", "cust123", "CUSTOMER");
+            addUser("Sita", "cust@gmail.com", "cust123", "CUSTOMER");
         }
     }
 

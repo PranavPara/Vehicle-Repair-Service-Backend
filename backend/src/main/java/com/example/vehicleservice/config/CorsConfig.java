@@ -1,18 +1,23 @@
 package com.example.vehicleservice.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-// The website runs on port 5173 and this server runs on port 8080.
-// Browsers block this by default, so we allow it here.
+// The website and this server run on different addresses.
+// Browsers block this by default, so we tell the server which website is allowed.
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
+
+    // read from application.properties (app.cors.allowed-origins)
+    @Value("${app.cors.allowed-origins}")
+    private String allowedOrigins;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins("http://localhost:5173")
+                .allowedOrigins(allowedOrigins.split(","))
                 .allowedMethods("GET", "POST", "PUT", "DELETE");
     }
 }
